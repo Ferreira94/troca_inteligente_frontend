@@ -6,6 +6,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Input } from "../components/Form/Input";
 import { useRouter } from "next/router";
+import { api } from "../services/api";
 
 type LoginData = {
   email: string;
@@ -14,10 +15,7 @@ type LoginData = {
 
 const createUserFormSchema = yup.object().shape({
   email: yup.string().required("E-mail obrigatório!").email("E-mail inválido!"),
-  password: yup
-    .string()
-    .required("Senha obrigatória!")
-    .min(6, "A senha deve conter no mínimo 6 caracteres!"),
+  password: yup.string().required("Senha obrigatória!"),
 });
 
 export default function Login() {
@@ -29,8 +27,16 @@ export default function Login() {
   const { errors } = formState;
 
   const handleLogin: SubmitHandler<LoginData> = async (values) => {
-    console.log(values);
-    router.push("/dashboard");
+    try {
+      await api.post("login", {
+        email: values.email,
+        password: values.password,
+      });
+
+      router.push("/dashboard");
+    } catch (error) {
+      alert("E-mail ou senha inválidos!");
+    }
   };
 
   return (
