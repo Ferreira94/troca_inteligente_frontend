@@ -7,20 +7,26 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Input } from "../components/Form/Input";
 import { useRouter } from "next/router";
 
-type LoginData = {
+type CreateUserFormData = {
+  name: string;
   email: string;
   password: string;
+  passwordConfirmation: string;
 };
 
 const createUserFormSchema = yup.object().shape({
+  name: yup.string().required("Nome obrigatório!"),
   email: yup.string().required("E-mail obrigatório!").email("E-mail inválido!"),
   password: yup
     .string()
     .required("Senha obrigatória!")
     .min(6, "A senha deve conter no mínimo 6 caracteres!"),
+  passwordConfirmation: yup
+    .string()
+    .oneOf([null, yup.ref("password")], "As senhas precisam ser iguais!"),
 });
 
-export default function Login() {
+export default function Register() {
   const router = useRouter();
 
   const { register, handleSubmit, formState } = useForm({
@@ -28,7 +34,9 @@ export default function Login() {
   });
   const { errors } = formState;
 
-  const handleLogin: SubmitHandler<LoginData> = async (values) => {
+  const handleCreateUser: SubmitHandler<CreateUserFormData> = async (
+    values
+  ) => {
     console.log(values);
     router.push("/dashboard");
   };
@@ -36,10 +44,17 @@ export default function Login() {
   return (
     <>
       <Head>
-        <title>Login</title>
+        <title>Cadastro</title>
       </Head>
 
-      <Flex w="100vw" h="100vh" align="center" justify="center">
+      <Flex
+        justifyContent="center"
+        alignItems="center"
+        flexDirection="column"
+        h="100vh"
+      >
+        <Text fontSize="24">Cadastro</Text>
+
         <Flex
           as="form"
           width="100%"
@@ -49,9 +64,15 @@ export default function Login() {
           flexDirection="column"
           align="center"
           border="1px solid green"
-          onSubmit={handleSubmit(handleLogin)}
+          onSubmit={handleSubmit(handleCreateUser)}
         >
           <Stack spacing="6">
+            <Input
+              name="name"
+              label="Nome Completo"
+              error={errors.name}
+              {...register("name")}
+            />
             <Input
               name="email"
               type="email"
@@ -66,17 +87,30 @@ export default function Login() {
               error={errors.password}
               {...register("password")}
             />
-            <Button type="submit" mt="6" colorScheme="green" size="lg">
-              Entrar
+            <Input
+              name="passwordConfirmation"
+              type="password"
+              label="Confirmar Senha"
+              error={errors.passwordConfirmation}
+              {...register("passwordConfirmation")}
+            />
+            <Button
+              type="submit"
+              mt="6"
+              colorScheme="green"
+              size="lg"
+              isLoading={formState.isSubmitting}
+            >
+              Cadastrar
             </Button>
           </Stack>
-
-          <Link href="/register">
-            <Text textDecoration="underline" cursor="pointer" mt="3">
-              Cadastro
-            </Text>
-          </Link>
         </Flex>
+
+        <Link href="/">
+          <Button colorScheme="red" mt="3">
+            Voltar
+          </Button>
+        </Link>
       </Flex>
     </>
   );

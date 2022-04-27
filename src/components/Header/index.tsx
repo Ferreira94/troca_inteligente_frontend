@@ -1,6 +1,6 @@
 import { Flex, Icon, Text } from "@chakra-ui/react";
 import Link from "next/link";
-import { AiOutlineLogout } from "react-icons/ai";
+import { FiLogOut } from "react-icons/fi";
 
 export default function Header() {
   return (
@@ -9,18 +9,13 @@ export default function Header() {
       alignItems="center"
       px="10"
       py="3"
-      bgColor="green.900"
       position="absolute"
       width="100%"
+      borderBottom="1px solid green"
     >
-      <Text color="pGray.050">Dashboard</Text>
+      <Text color="pGray.900">Dashboard</Text>
       <Link href="/">
-        <Icon
-          as={AiOutlineLogout}
-          color="pGray.050"
-          fontSize="xl"
-          cursor="pointer"
-        />
+        <Icon as={FiLogOut} color="pGray.900" fontSize="xl" cursor="pointer" />
       </Link>
     </Flex>
   );

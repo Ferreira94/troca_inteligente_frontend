@@ -6,12 +6,12 @@ export default function Footer() {
       justifyContent="center"
       alignItems="center"
       py="3"
-      bgColor="green.900"
       position="absolute"
       w="100%"
       bottom="0"
+      borderTop="1px solid green"
     >
-      <Text color="pGray.050">Footer</Text>
+      <Text color="pGray.900">Footer</Text>
     </Flex>
   );
 }
