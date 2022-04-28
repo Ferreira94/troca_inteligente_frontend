@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import { Flex, Icon, Text } from "@chakra-ui/react";
-import Link from "next/link";
 import { FiLogOut } from "react-icons/fi";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export default function Header() {
+  const { signOut } = useContext(AuthContext);
+
   return (
     <Flex
       justifyContent="space-between"
@@ -14,9 +17,13 @@ export default function Header() {
       borderBottom="1px solid green"
     >
       <Text color="pGray.900">Dashboard</Text>
-      <Link href="/">
-        <Icon as={FiLogOut} color="pGray.900" fontSize="xl" cursor="pointer" />
-      </Link>
+      <Icon
+        as={FiLogOut}
+        color="pGray.900"
+        fontSize="xl"
+        cursor="pointer"
+        onClick={signOut}
+      />
     </Flex>
   );
 }

@@ -1,11 +1,13 @@
+import { useContext } from "react";
 import { Button, Flex, Stack, Text } from "@chakra-ui/react";
 import Head from "next/head";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Input } from "../components/Form/Input";
 import { useRouter } from "next/router";
+import { AuthContext } from "../contexts/AuthContext";
+import { Input } from "../components/Form/Input";
 import { api } from "../services/api";
 
 type CreateUserFormData = {
@@ -13,6 +15,11 @@ type CreateUserFormData = {
   email: string;
   password: string;
   passwordConfirmation: string;
+};
+
+type LoginData = {
+  email: string;
+  password: string;
 };
 
 const createUserFormSchema = yup.object().shape({
@@ -31,7 +38,7 @@ const createUserFormSchema = yup.object().shape({
 });
 
 export default function Register() {
-  const router = useRouter();
+  const { signIn } = useContext(AuthContext);
 
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(createUserFormSchema),
@@ -41,14 +48,14 @@ export default function Register() {
   const handleCreateUser: SubmitHandler<CreateUserFormData> = async (
     values
   ) => {
+    const userSign = { email: values.email, password: values.password };
     await api.post("register", {
       name: values.name,
       email: values.email,
       password: values.password,
       confirmPassword: values.passwordConfirmation,
     });
-
-    router.push("/dashboard");
+    signIn(userSign);
   };
 
   return (

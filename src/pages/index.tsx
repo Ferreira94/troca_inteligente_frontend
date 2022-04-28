@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import { Button, Flex, Stack, Text } from "@chakra-ui/react";
 import Head from "next/head";
 import Link from "next/link";
@@ -5,8 +6,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Input } from "../components/Form/Input";
-import { useRouter } from "next/router";
-import { api } from "../services/api";
+import { AuthContext } from "../contexts/AuthContext";
 
 type LoginData = {
   email: string;
@@ -19,7 +19,7 @@ const createUserFormSchema = yup.object().shape({
 });
 
 export default function Login() {
-  const router = useRouter();
+  const { signIn } = useContext(AuthContext);
 
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(createUserFormSchema),
@@ -28,12 +28,7 @@ export default function Login() {
 
   const handleLogin: SubmitHandler<LoginData> = async (values) => {
     try {
-      await api.post("login", {
-        email: values.email,
-        password: values.password,
-      });
-
-      router.push("/dashboard");
+      await signIn(values);
     } catch (error) {
       alert("E-mail ou senha inválidos!");
     }
