@@ -64,7 +64,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
         .then((response) => {
           const { name, email } = response.data;
 
-          console.log(name, email);
           setUser({ name, email });
         })
         .catch(() => {
@@ -76,30 +75,26 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, []);
 
   async function signIn({ email, password }: SignInCredentials) {
-    try {
-      const response = await api.post("login", {
-        email,
-        password,
-      });
+    const response = await api.post("login", {
+      email,
+      password,
+    });
 
-      const { token, name } = response.data;
+    const { token, name } = response.data;
 
-      setCookie(undefined, "eco.token", token, {
-        maxAge: 60 * 60 * 24 * 30, // 30 days
-        path: "/",
-      });
+    setCookie(undefined, "eco.token", token, {
+      maxAge: 60 * 60 * 24 * 30, // 30 days
+      path: "/",
+    });
 
-      setUser({
-        name,
-        email,
-      });
+    setUser({
+      name,
+      email,
+    });
 
-      api.defaults.headers["Authorization"] = `Bearer ${token}`;
+    api.defaults.headers["Authorization"] = `Bearer ${token}`;
 
-      Router.push("/dashboard");
-    } catch (error) {
-      console.log(error);
-    }
+    Router.push("/dashboard");
   }
 
   return (

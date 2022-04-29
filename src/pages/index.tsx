@@ -1,5 +1,18 @@
-import { useContext } from "react";
-import { Button, Flex, Stack, Text } from "@chakra-ui/react";
+import { useContext, useState } from "react";
+import {
+  Button,
+  Flex,
+  Stack,
+  Text,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+} from "@chakra-ui/react";
 import Head from "next/head";
 import Link from "next/link";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -20,6 +33,8 @@ const createUserFormSchema = yup.object().shape({
 
 export default function Login() {
   const { signIn } = useContext(AuthContext);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [messageError, setMessageError] = useState("");
 
   const { register, handleSubmit, formState } = useForm({
     resolver: yupResolver(createUserFormSchema),
@@ -30,7 +45,8 @@ export default function Login() {
     try {
       await signIn(values);
     } catch (error) {
-      alert("E-mail ou senha inválidos!");
+      onOpen();
+      setMessageError(error.response.data.error);
     }
   };
 
@@ -67,10 +83,26 @@ export default function Login() {
               error={errors.password}
               {...register("password")}
             />
-            <Button type="submit" mt="6" colorScheme="green" size="lg">
+            <Button
+              type="submit"
+              mt="6"
+              colorScheme="green"
+              size="lg"
+              isLoading={formState.isSubmitting}
+            >
               Entrar
             </Button>
           </Stack>
+          <Modal isOpen={isOpen} onClose={onClose}>
+            <ModalOverlay />
+            <ModalContent w="60">
+              <ModalHeader></ModalHeader>
+              <ModalCloseButton />
+              <ModalBody>{messageError}</ModalBody>
+
+              <ModalFooter></ModalFooter>
+            </ModalContent>
+          </Modal>
 
           <Link href="/register">
             <Text textDecoration="underline" cursor="pointer" mt="3">
