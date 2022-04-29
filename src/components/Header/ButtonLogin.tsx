@@ -40,6 +40,7 @@ export default function ButtonLogin() {
 
   const handleLogin: SubmitHandler<LoginData> = async (values) => {
     try {
+      setMessageError("");
       await signIn(values);
     } catch (error) {
       setMessageError(error.response.data.error);
@@ -103,7 +104,11 @@ export default function ButtonLogin() {
             </Flex>
           </ModalBody>
           <ModalFooter>
-            {messageError && <Text color="red">{messageError}!</Text>}
+            {messageError && (
+              <Text color="red" m="0 auto">
+                {messageError}!
+              </Text>
+            )}
           </ModalFooter>
         </ModalContent>
       </Modal>

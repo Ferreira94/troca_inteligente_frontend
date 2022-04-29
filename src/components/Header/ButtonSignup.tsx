@@ -45,6 +45,7 @@ export default function ButtonSignup() {
     values
   ) => {
     try {
+      setMessageError("");
       const userSign = { email: values.email, password: values.password };
       await api.post("register", {
         name: values.name,
