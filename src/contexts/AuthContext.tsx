@@ -29,14 +29,6 @@ export const AuthContext = createContext({} as AuthContextData);
 
 let authChannel: BroadcastChannel;
 
-export function signOut() {
-  destroyCookie(undefined, "eco.token");
-
-  authChannel.postMessage("signOut");
-
-  Router.push("/");
-}
-
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User>();
   const isAuthenticated = !!user;
@@ -95,6 +87,15 @@ export function AuthProvider({ children }: AuthProviderProps) {
     api.defaults.headers["Authorization"] = `Bearer ${token}`;
 
     Router.push("/dashboard");
+  }
+
+  async function signOut() {
+    destroyCookie(undefined, "eco.token");
+    setUser(null);
+
+    authChannel.postMessage("signOut");
+
+    Router.push("/");
   }
 
   return (
