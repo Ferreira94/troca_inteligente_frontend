@@ -58,6 +58,7 @@ export default function ButtonSignup() {
       const userSign = { email: values.email, password: values.password };
       await api.post("register", {
         name: values.name,
+        cpf: values.cpf,
         email: values.email,
         password: values.password,
         confirmPassword: values.passwordConfirmation,

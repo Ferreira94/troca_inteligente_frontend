@@ -13,6 +13,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import ButtonLogin from "./ButtonLogin";
 import ButtonSignup from "./ButtonSignup";
 import { FiLogOut, FiChevronDown } from "react-icons/fi";
+import Link from "next/link";
 
 export default function Header() {
   const { isAuthorized, signOut } = useContext(AuthContext);
@@ -33,9 +34,11 @@ export default function Header() {
           <Image src="/images/logo.svg" alt="Logo" />
         </Text>
         <Flex ml="20">
-          <Text fontWeight="700" cursor="pointer">
-            Recicláveis
-          </Text>
+          <Link href="/recyclables">
+            <Text fontWeight="700" cursor="pointer">
+              Recicláveis
+            </Text>
+          </Link>
           <Center height="20px" mx="2">
             <Divider orientation="vertical" fontWeight="700" />
           </Center>
