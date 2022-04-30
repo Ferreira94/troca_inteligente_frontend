@@ -17,6 +17,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { FiLogOut, FiMenu } from "react-icons/fi";
 import Login from "./Login";
 import Signup from "./Signup";
+import Link from "next/link";
 
 export default function HeaderMobile() {
   const { isAuthorized, signOut } = useContext(AuthContext);
@@ -38,9 +39,9 @@ export default function HeaderMobile() {
       justify="space-between"
       zIndex="5"
     >
-      <Text fontWeight="700" cursor="pointer">
-        <Image src="/images/logo.svg" alt="Logo" />
-      </Text>
+      <Link href="/">
+        <Image src="/images/logo.svg" alt="Logo" cursor="pointer" />
+      </Link>
       <Icon
         onClick={onOpen}
         as={FiMenu}
@@ -60,9 +61,11 @@ export default function HeaderMobile() {
 
           <DrawerBody pt="40">
             {!isAuthorized && <Login />}
-            <Text fontWeight="700" cursor="pointer">
-              Recicláveis
-            </Text>
+            <Link href="/recyclables">
+              <Text fontWeight="700" cursor="pointer">
+                Recicláveis
+              </Text>
+            </Link>
             <Text fontWeight="700" cursor="pointer">
               Pontos de Coleta
             </Text>

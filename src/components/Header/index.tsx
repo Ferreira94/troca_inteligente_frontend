@@ -30,9 +30,9 @@ export default function Header() {
       zIndex="5"
     >
       <Flex align="center">
-        <Text fontWeight="700" cursor="pointer">
-          <Image src="/images/logo.svg" alt="Logo" />
-        </Text>
+        <Link href="/">
+          <Image src="/images/logo.svg" alt="Logo" cursor="pointer" />
+        </Link>
         <Flex ml="20">
           <Link href="/recyclables">
             <Text fontWeight="700" cursor="pointer">
