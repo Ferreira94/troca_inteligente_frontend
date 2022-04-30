@@ -53,19 +53,18 @@ export function AuthProvider({ children }: AuthProviderProps) {
     const { "eco.token": token } = parseCookies();
 
     if (token) {
-      setIsAuthorized(true);
       api
         .get(`/me`, { headers: { "auth-token": token } })
         .then((response) => {
           const { name, email } = response.data;
 
           setUser({ name, email });
+          setIsAuthorized(true);
+          Router.push("/dashboard");
         })
         .catch(() => {
           signOut();
         });
-
-      Router.push("/dashboard");
     }
   }, []);
 
