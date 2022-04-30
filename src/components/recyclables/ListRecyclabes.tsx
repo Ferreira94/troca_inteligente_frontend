@@ -28,12 +28,13 @@ export default function ListRecyclabes({
     lg: true,
   });
 
+  const isWideVersionMd = useBreakpointValue({
+    base: false,
+    md: true,
+  });
+
   return (
-    <Box
-      mt="10"
-      maxW={isWideVersionLg ? "550px" : "450px"}
-      minW={isWideVersionLg ? "550px" : "450px"}
-    >
+    <Box mt="10" w={isWideVersionMd ? "550px" : "330px"}>
       <Flex align="center">
         <Flex
           w="40px"

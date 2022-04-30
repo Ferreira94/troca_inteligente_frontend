@@ -48,7 +48,9 @@ export default function Recyclables() {
         mt="10"
       >
         <Flex align="center">
-          <Heading fontSize="34px">Resíduo Reciclável</Heading>
+          <Heading fontSize={isWideVersionMd ? "34px" : "24px"}>
+            Resíduo Reciclável
+          </Heading>
           <Icon as={MdRecycling} fontSize="30px" color="primary.100" ml="3" />
         </Flex>
         {isWideVersionMd ? (
