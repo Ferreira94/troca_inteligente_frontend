@@ -26,8 +26,16 @@ type CreateUserFormData = {
 };
 
 const createUserFormSchema = yup.object().shape({
+  name: yup.string().required("Nome é obrigatório!"),
   email: yup.string().required("E-mail obrigatório!").email("E-mail inválido!"),
-  password: yup.string().required("Senha obrigatória!"),
+  cpf: yup.string().required("CPF obrigatório!"),
+  password: yup
+    .string()
+    .required("Senha obrigatória!")
+    .min(8, "A senha deve conter no mínimo 8 caracteres!"),
+  passwordConfirmation: yup
+    .string()
+    .oneOf([null, yup.ref("password")], "As senhas precisam ser iguais!"),
 });
 
 export default function ButtonSignup() {

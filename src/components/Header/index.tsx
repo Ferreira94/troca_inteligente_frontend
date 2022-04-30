@@ -15,7 +15,7 @@ import ButtonSignup from "./ButtonSignup";
 import { FiLogOut, FiChevronDown } from "react-icons/fi";
 
 export default function Header() {
-  const { user, signOut } = useContext(AuthContext);
+  const { isAuthorized, signOut } = useContext(AuthContext);
   const [userOptions, setUserOptions] = useState(false);
 
   return (
@@ -51,7 +51,7 @@ export default function Header() {
         </Flex>
       </Flex>
       <Box>
-        {!user ? (
+        {!isAuthorized ? (
           <>
             <ButtonLogin />
             <ButtonSignup />

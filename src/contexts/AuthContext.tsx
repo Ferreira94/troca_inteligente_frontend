@@ -60,12 +60,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
           const { name, email } = response.data;
 
           setUser({ name, email });
+          setIsAuthorized(true);
+          Router.push("/dashboard");
         })
         .catch(() => {
           signOut();
         });
-
-      Router.push("/dashboard");
     }
   }, []);
 
