@@ -10,8 +10,9 @@ import {
   DrawerOverlay,
   useDisclosure,
   Image,
+  useBreakpointValue,
 } from "@chakra-ui/react";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { FiLogOut, FiMenu } from "react-icons/fi";
 import Login from "./Login";
@@ -19,15 +20,19 @@ import Signup from "./Signup";
 
 export default function HeaderMobile() {
   const { isAuthorized, signOut } = useContext(AuthContext);
-  const [userOptions, setUserOptions] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
+
+  const isWideVersionMd = useBreakpointValue({
+    base: false,
+    md: true,
+  });
 
   return (
     <Flex
       width="100%"
       py="5"
-      px="20"
+      px={isWideVersionMd ? "20" : "7"}
       borderBottom="1px solid #E7E8FC"
       align="center"
       justify="space-between"

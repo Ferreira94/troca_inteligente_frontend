@@ -20,6 +20,7 @@ import { api } from "../../services/api";
 
 type CreateUserFormData = {
   name: string;
+  cpf: string;
   email: string;
   password: string;
   passwordConfirmation: string;
@@ -94,6 +95,12 @@ export default function ButtonSignup() {
                 label="Nome Completo"
                 error={errors.name}
                 {...register("name")}
+              />
+              <Input
+                name="cpf"
+                label="CPF"
+                error={errors.cpf}
+                {...register("cpf")}
               />
               <Input
                 name="email"

@@ -21,7 +21,7 @@ export default function Content() {
   return (
     <Flex
       width="100%"
-      px="20"
+      px={isWideVersionMd ? "20" : "7"}
       mt="10"
       flexDirection={isWideVersionMd ? "row" : "column-reverse"}
       justify={isWideVersionMd ? "space-between" : "flex-start"}
@@ -43,6 +43,7 @@ export default function Content() {
         </Text>
         <Button
           h="36px"
+          mb={isWideVersionMd ? "0" : "5"}
           bgGradient="linear(to-t, primary.200, primary.100)"
           _hover={{
             bgGradient: "linear(to-r, primary.100, primary.200)",
