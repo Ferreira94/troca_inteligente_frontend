@@ -26,7 +26,7 @@ type CreateUserFormData = {
 };
 
 const createUserFormSchema = yup.object().shape({
-  name: yup.string().required("Nome obrigatório!"),
+  name: yup.string().required("Nome é obrigatório!"),
   email: yup.string().required("E-mail obrigatório!").email("E-mail inválido!"),
   cpf: yup.string().required("CPF obrigatório!"),
   password: yup
