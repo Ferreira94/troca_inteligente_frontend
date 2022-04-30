@@ -39,7 +39,7 @@ export default function Login() {
           w="100vw"
           mt={isWideVersionLg ? "-25.5%" : "-28.5%"}
         />
-        <Box px="20" bgColor="#00C31F">
+        <Box px={isWideVersionMd ? "20" : "7"} bgColor="#00C31F">
           <Heading
             fontWeight="800"
             fontSize={isWideVersionMd ? "42px" : "30px"}

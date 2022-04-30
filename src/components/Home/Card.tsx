@@ -8,8 +8,10 @@ interface CardProps {
 export default function Card({ text, number }: CardProps) {
   return (
     <Box
-      w="200px"
-      h="210px"
+      minW="200px"
+      minH="210px"
+      maxW="200px"
+      maxH="210px"
       border="4px solid #fff"
       borderRadius="16px"
       p="3"
