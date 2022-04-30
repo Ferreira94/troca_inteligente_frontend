@@ -1,6 +1,12 @@
 import { extendTheme } from "@chakra-ui/react";
 
 export const theme = extendTheme({
+  breakpoints: {
+    lg: "70em",
+    md: "60em",
+    ml: "50em",
+  },
+
   colors: {
     pGray: {
       "050": "#F3F2F2",
@@ -14,8 +20,9 @@ export const theme = extendTheme({
       "800": "#353431",
       "900": "#1B1A18",
     },
-    yellow: {
-      "300": "#E3E627",
+    primary: {
+      "100": "#77E543",
+      "200": "#57EBAD",
     },
   },
   fonts: {

@@ -20,23 +20,14 @@ import { api } from "../../services/api";
 
 type CreateUserFormData = {
   name: string;
-  cpf: string;
   email: string;
   password: string;
   passwordConfirmation: string;
 };
 
 const createUserFormSchema = yup.object().shape({
-  name: yup.string().required("Nome obrigatório!"),
   email: yup.string().required("E-mail obrigatório!").email("E-mail inválido!"),
-  cpf: yup.string().required("CPF obrigatório!"),
-  password: yup
-    .string()
-    .required("Senha obrigatória!")
-    .min(6, "A senha deve conter no mínimo 6 caracteres!"),
-  passwordConfirmation: yup
-    .string()
-    .oneOf([null, yup.ref("password")], "As senhas precisam ser iguais!"),
+  password: yup.string().required("Senha obrigatória!"),
 });
 
 export default function ButtonSignup() {
@@ -58,7 +49,6 @@ export default function ButtonSignup() {
       const userSign = { email: values.email, password: values.password };
       await api.post("register", {
         name: values.name,
-        cpf: values.cpf,
         email: values.email,
         password: values.password,
         confirmPassword: values.passwordConfirmation,
@@ -72,17 +62,9 @@ export default function ButtonSignup() {
 
   return (
     <>
-      <Button
-        bgGradient="linear(to-t, primary.200, primary.100)"
-        _hover={{
-          bgGradient: "linear(to-r, primary.100, primary.200)",
-        }}
-        onClick={onOpen}
-        h="36px"
-        ml="5"
-      >
-        Quero me cadastrar
-      </Button>
+      <Text fontWeight="700" cursor="pointer" onClick={onOpen}>
+        Cadastre-se
+      </Text>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent w="300px" p="5">
@@ -104,12 +86,6 @@ export default function ButtonSignup() {
                 label="Nome Completo"
                 error={errors.name}
                 {...register("name")}
-              />
-              <Input
-                name="cpf"
-                label="CPF"
-                error={errors.cpf}
-                {...register("cpf")}
               />
               <Input
                 name="email"
