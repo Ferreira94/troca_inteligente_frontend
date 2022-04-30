@@ -9,14 +9,13 @@ export default function Card({ text, number }: CardProps) {
   return (
     <Box
       w="200px"
-      h="200px"
+      h="210px"
       border="4px solid #fff"
       borderRadius="16px"
       p="3"
       mr="10"
       mb="10"
     >
-      <Text color="#fff">{text}</Text>
       <Flex
         w="40px"
         h="40px"
@@ -25,13 +24,16 @@ export default function Card({ text, number }: CardProps) {
         align="center"
         justify="center"
         position="relative"
-        top="-175px"
-        left="-35px"
+        top="-30px"
+        left="-30px"
       >
         <Text color="#00C31F" fontWeight="800" fontSize="28px">
           {number}
         </Text>
       </Flex>
+      <Text fontWeight="500" fontSize="14px" mt="-30px" color="#fff">
+        {text}
+      </Text>
     </Box>
   );
 }

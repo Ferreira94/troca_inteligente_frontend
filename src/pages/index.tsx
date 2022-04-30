@@ -54,16 +54,18 @@ export default function Login() {
               number={1}
             />
             <Card
-              text="Realize o seu cadastro em nosso site. Só assim será possível recuperar pontos ao realizar o descarte nas lixeiras inteligentes."
-              number={1}
+              text="Separe os materiais recicláveis (aceitamos plásticos e alumínio).
+              Em seguida dirija-se até um dos pontos de coleta para efetuar o descarte."
+              number={2}
             />
             <Card
-              text="Realize o seu cadastro em nosso site. Só assim será possível recuperar pontos ao realizar o descarte nas lixeiras inteligentes."
-              number={1}
+              text="Localize a lixeira.
+              No tablet insira seu CPF. Em seguida, coloque os recicláveis na lixeira. Aguarde o processo de identificação feito pela lixeira e emissão do cupom de desconto.."
+              number={3}
             />
             <Card
-              text="Realize o seu cadastro em nosso site. Só assim será possível recuperar pontos ao realizar o descarte nas lixeiras inteligentes."
-              number={1}
+              text="Com o cupom emitido, você pode utilizar nas lojas participantes do estabelecimento, ou trocar os pontos por cupons de descontos aqui em nosso site.."
+              number={4}
             />
           </Flex>
         </Box>
