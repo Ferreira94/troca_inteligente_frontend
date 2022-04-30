@@ -16,30 +16,18 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AuthContext } from "../../contexts/AuthContext";
 import { Input } from "../Form/Input";
-import { api } from "../../services/api";
 
-type CreateUserFormData = {
-  name: string;
-  cpf: string;
-  email: string;
+type LoginData = {
+  credential: string;
   password: string;
-  passwordConfirmation: string;
 };
 
 const createUserFormSchema = yup.object().shape({
-  name: yup.string().required("Nome obrigatório!"),
-  email: yup.string().required("E-mail obrigatório!").email("E-mail inválido!"),
-  cpf: yup.string().required("CPF obrigatório!"),
-  password: yup
-    .string()
-    .required("Senha obrigatória!")
-    .min(6, "A senha deve conter no mínimo 6 caracteres!"),
-  passwordConfirmation: yup
-    .string()
-    .oneOf([null, yup.ref("password")], "As senhas precisam ser iguais!"),
+  credential: yup.string().required("E-mail ou CPF obrigatório!"),
+  password: yup.string().required("Senha obrigatória!"),
 });
 
-export default function ButtonSignup() {
+export default function Login() {
   const { signIn } = useContext(AuthContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -50,45 +38,26 @@ export default function ButtonSignup() {
   });
   const { errors } = formState;
 
-  const handleCreateUser: SubmitHandler<CreateUserFormData> = async (
-    values
-  ) => {
+  const handleLogin: SubmitHandler<LoginData> = async (values) => {
     try {
       setMessageError("");
-      const userSign = { email: values.email, password: values.password };
-      await api.post("register", {
-        name: values.name,
-        cpf: values.cpf,
-        email: values.email,
-        password: values.password,
-        confirmPassword: values.passwordConfirmation,
-      });
-      signIn(userSign);
+      await signIn(values);
     } catch (error) {
-      onOpen();
       setMessageError(error.response.data.error);
     }
   };
 
   return (
     <>
-      <Button
-        bgGradient="linear(to-t, primary.200, primary.100)"
-        _hover={{
-          bgGradient: "linear(to-r, primary.100, primary.200)",
-        }}
-        onClick={onOpen}
-        h="36px"
-        ml="5"
-      >
-        Quero me cadastrar
-      </Button>
+      <Text fontWeight="700" onClick={onOpen} cursor="pointer">
+        Login
+      </Text>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent w="300px" p="5">
           <ModalHeader>
             <Text fontSize="16px" color="pgray.200">
-              Preencha os dados abaixo para realizar seu cadastro
+              Entre com seu login e senha para conferir as ofertas
             </Text>
           </ModalHeader>
           <ModalBody>
@@ -97,26 +66,13 @@ export default function ButtonSignup() {
               width="100%"
               flexDirection="column"
               align="flex-start"
-              onSubmit={handleSubmit(handleCreateUser)}
+              onSubmit={handleSubmit(handleLogin)}
             >
               <Input
-                name="name"
-                label="Nome Completo"
-                error={errors.name}
-                {...register("name")}
-              />
-              <Input
-                name="cpf"
-                label="CPF"
-                error={errors.cpf}
-                {...register("cpf")}
-              />
-              <Input
-                name="email"
-                type="email"
-                label="E-mail"
-                error={errors.email}
-                {...register("email")}
+                name="credential"
+                label="E-mail ou CPF"
+                error={errors.credential}
+                {...register("credential")}
               />
               <Input
                 name="password"
@@ -125,13 +81,9 @@ export default function ButtonSignup() {
                 error={errors.password}
                 {...register("password")}
               />
-              <Input
-                name="passwordConfirmation"
-                type="password"
-                label="Confirmar Senha"
-                error={errors.passwordConfirmation}
-                {...register("passwordConfirmation")}
-              />
+              <Text fontSize="13px" cursor="pointer" textAlign="right" w="100%">
+                Esqueci minha senha
+              </Text>
               <Button
                 type="submit"
                 mt="2"
@@ -143,7 +95,7 @@ export default function ButtonSignup() {
                 fontSize="16px"
                 isLoading={formState.isSubmitting}
               >
-                Cadastrar
+                Entrar
               </Button>
             </Flex>
           </ModalBody>

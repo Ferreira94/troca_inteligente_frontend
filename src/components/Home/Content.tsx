@@ -1,9 +1,36 @@
-import { Box, Button, Flex, Image, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Flex,
+  Image,
+  Text,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 
 export default function Content() {
+  const isWideVersionLg = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
+
+  const isWideVersionMd = useBreakpointValue({
+    base: false,
+    md: true,
+  });
+
   return (
-    <Flex width="100%" px="20" mt="20" justify="space-between">
-      <Box w="40%">
+    <Flex
+      width="100%"
+      px="20"
+      mt="10"
+      flexDirection={isWideVersionMd ? "row" : "column-reverse"}
+      justify={isWideVersionMd ? "space-between" : "flex-start"}
+      align={isWideVersionLg ? "flex-start" : "flex-start"}
+    >
+      <Box
+        w={isWideVersionMd ? "40%" : "100%"}
+        mt={isWideVersionMd ? "0" : "10"}
+      >
         <Text fontWeight="700" fontSize="3xl">
           Lorem Ipsum
         </Text>
@@ -16,15 +43,15 @@ export default function Content() {
         </Text>
         <Button
           h="36px"
-          bgGradient="linear(to-r, teal.500, green.500)"
+          bgGradient="linear(to-t, primary.200, primary.100)"
           _hover={{
-            bgGradient: "linear(to-r, green.500, teal.500)",
+            bgGradient: "linear(to-r, primary.100, primary.200)",
           }}
         >
           Faça seu cadastro
         </Button>
       </Box>
-      <Box w="530px">
+      <Box w={isWideVersionMd ? "50%" : "100%"}>
         <Image src="/images/home.jpg" alt="Recicláveis" />
       </Box>
     </Flex>

@@ -5,6 +5,7 @@ import {
   Divider,
   Flex,
   Icon,
+  Image,
   Text,
 } from "@chakra-ui/react";
 import { useContext, useState } from "react";
@@ -27,9 +28,9 @@ export default function Header() {
       justify="space-between"
       zIndex="5"
     >
-      <Flex>
+      <Flex align="center">
         <Text fontWeight="700" cursor="pointer">
-          Troca Inteligente (logo)
+          <Image src="/images/logo.svg" alt="Logo" />
         </Text>
         <Flex ml="20">
           <Text fontWeight="700" cursor="pointer">

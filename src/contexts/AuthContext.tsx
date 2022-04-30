@@ -10,7 +10,9 @@ type User = {
 };
 
 type SignInCredentials = {
-  email: string;
+  credential?: string;
+  cpf?: string;
+  email?: string;
   password: string;
 };
 
@@ -18,7 +20,7 @@ type AuthContextData = {
   signIn: (credentials: SignInCredentials) => Promise<void>;
   signOut: () => void;
   user: User;
-  isAuthenticated: boolean;
+  isAuthorized: boolean;
 };
 
 type AuthProviderProps = {
@@ -31,7 +33,7 @@ let authChannel: BroadcastChannel;
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User>();
-  const isAuthenticated = !!user;
+  const [isAuthorized, setIsAuthorized] = useState(false);
 
   useEffect(() => {
     authChannel = new BroadcastChannel("auth");
@@ -51,6 +53,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     const { "eco.token": token } = parseCookies();
 
     if (token) {
+      setIsAuthorized(true);
       api
         .get(`/me`, { headers: { "auth-token": token } })
         .then((response) => {
@@ -66,9 +69,28 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
   }, []);
 
-  async function signIn({ email, password }: SignInCredentials) {
+  async function signIn({
+    email,
+    cpf,
+    credential,
+    password,
+  }: SignInCredentials) {
+    let credentialLogin = "";
+
+    if (email) {
+      credentialLogin = email;
+    }
+
+    if (credential) {
+      credentialLogin = credential;
+    }
+
+    if (cpf) {
+      credentialLogin = cpf;
+    }
+
     const response = await api.post("login", {
-      email,
+      credentialLogin,
       password,
     });
 
@@ -86,12 +108,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
     api.defaults.headers["Authorization"] = `Bearer ${token}`;
 
+    setIsAuthorized(true);
     Router.push("/dashboard");
   }
 
   async function signOut() {
     destroyCookie(undefined, "eco.token");
-    setUser(null);
+    setIsAuthorized(false);
 
     authChannel.postMessage("signOut");
 
@@ -99,7 +122,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }
 
   return (
-    <AuthContext.Provider value={{ signIn, signOut, isAuthenticated, user }}>
+    <AuthContext.Provider value={{ signIn, signOut, user, isAuthorized }}>
       {children}
     </AuthContext.Provider>
   );

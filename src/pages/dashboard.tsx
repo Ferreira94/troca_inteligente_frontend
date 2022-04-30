@@ -1,16 +1,21 @@
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Text, useBreakpointValue } from "@chakra-ui/react";
 import Router from "next/router";
 import Head from "next/head";
 import { useContext, useEffect } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { AuthContext } from "../contexts/AuthContext";
+import HeaderMobile from "../components/HeaderMobile";
 
 export default function Dashboard() {
-  const { user } = useContext(AuthContext);
+  const { isAuthorized } = useContext(AuthContext);
+  const isWideVersionLg = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
 
   useEffect(() => {
-    if (!user) {
+    if (!isAuthorized) {
       Router.push("/");
     }
   }, []);
@@ -20,7 +25,7 @@ export default function Dashboard() {
         <title>Dashboard</title>
       </Head>
 
-      <Header />
+      {isWideVersionLg ? <Header /> : <HeaderMobile />}
 
       <Flex
         justifyContent="center"

@@ -18,12 +18,12 @@ import { AuthContext } from "../../contexts/AuthContext";
 import { Input } from "../Form/Input";
 
 type LoginData = {
-  email: string;
+  credential: string;
   password: string;
 };
 
 const createUserFormSchema = yup.object().shape({
-  email: yup.string().required("E-mail obrigatório!").email("E-mail inválido!"),
+  credential: yup.string().required("E-mail ou CPF obrigatório!"),
   password: yup.string().required("Senha obrigatória!"),
 });
 
@@ -53,6 +53,10 @@ export default function ButtonLogin() {
         colorScheme="white"
         color="pGray.800"
         border="1px solid green"
+        borderColor="primary.200"
+        _hover={{
+          borderColor: "primary.100",
+        }}
         onClick={onOpen}
         h="36px"
       >
@@ -75,11 +79,10 @@ export default function ButtonLogin() {
               onSubmit={handleSubmit(handleLogin)}
             >
               <Input
-                name="email"
-                type="email"
-                label="E-mail"
-                error={errors.email}
-                {...register("email")}
+                name="credential"
+                label="E-mail ou CPF"
+                error={errors.credential}
+                {...register("credential")}
               />
               <Input
                 name="password"
@@ -94,7 +97,10 @@ export default function ButtonLogin() {
               <Button
                 type="submit"
                 mt="2"
-                colorScheme="green"
+                bgGradient="linear(to-t, primary.200, primary.100)"
+                _hover={{
+                  bgGradient: "linear(to-r, primary.100, primary.200)",
+                }}
                 h="36px"
                 fontSize="16px"
                 isLoading={formState.isSubmitting}
