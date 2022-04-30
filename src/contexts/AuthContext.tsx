@@ -53,6 +53,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     const { "eco.token": token } = parseCookies();
 
     if (token) {
+      setIsAuthorized(true);
       api
         .get(`/me`, { headers: { "auth-token": token } })
         .then((response) => {
