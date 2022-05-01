@@ -10,6 +10,7 @@ import {
   ModalFooter,
   ModalBody,
   useDisclosure,
+  MenuItem,
 } from "@chakra-ui/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -72,9 +73,8 @@ export default function ButtonSignup() {
 
   return (
     <>
-      <Text fontWeight="700" cursor="pointer" onClick={onOpen}>
-        Cadastre-se
-      </Text>
+      <MenuItem onClick={onOpen}>Cadastre-se</MenuItem>
+
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent w="300px" p="5">

@@ -6,6 +6,10 @@ import {
   Flex,
   Icon,
   Image,
+  Menu,
+  MenuButton,
+  MenuList,
+  Spinner,
   Text,
 } from "@chakra-ui/react";
 import { useContext, useState } from "react";
@@ -13,11 +17,11 @@ import { AuthContext } from "../../contexts/AuthContext";
 import ButtonLogin from "./ButtonLogin";
 import ButtonSignup from "./ButtonSignup";
 import { FiLogOut, FiChevronDown } from "react-icons/fi";
+import { GiShoppingCart } from "react-icons/gi";
 import Link from "next/link";
 
 export default function Header() {
-  const { isAuthorized, signOut } = useContext(AuthContext);
-  const [userOptions, setUserOptions] = useState(false);
+  const { isAuthorized, signOut, user } = useContext(AuthContext);
 
   return (
     <Flex
@@ -32,7 +36,7 @@ export default function Header() {
     >
       <Flex align="center">
         <Link href="/">
-          <Image src="/images/logo.svg" alt="Logo" cursor="pointer" />
+          <Image src="/images/logo.png" alt="Logo" cursor="pointer" />
         </Link>
         <Flex ml="20">
           <Link href="/recyclables">
@@ -59,46 +63,46 @@ export default function Header() {
         </Flex>
       </Flex>
       <Box>
-        {!isAuthorized ? (
+        {isAuthorized !== "true" ? (
           <>
             <ButtonLogin />
             <ButtonSignup />
           </>
         ) : (
           <Flex align="center">
-            <Avatar w="35px" h="35px" bgColor="green" />
+            <Avatar w="35px" h="35px" bgColor="primary.300" />
             <Box mx="2">
-              <Text fontSize="14px" fontWeight="700" lineHeight="1">
-                Luiz Carvalho
-              </Text>
-              <Text fontSize="14px" fontWeight="700" lineHeight="1">
-                374 pontos
-              </Text>
+              {user ? (
+                <Text fontSize="14px" fontWeight="700" lineHeight="1">
+                  {user.name}
+                </Text>
+              ) : (
+                <Spinner />
+              )}
+              {user && (
+                <Text fontSize="14px" fontWeight="700" lineHeight="1">
+                  {user.score} pontos
+                </Text>
+              )}
             </Box>
+            <Menu>
+              <MenuButton as="button">
+                <Icon fontSize="24px" as={FiChevronDown} />
+              </MenuButton>
+              <MenuList zIndex="99">
+                <Flex align="center" pl="3" cursor="pointer" onClick={signOut}>
+                  <Icon as={FiLogOut} color="red" />
+                  <Text ml="2">Sair</Text>
+                </Flex>
+              </MenuList>
+            </Menu>
             <Icon
-              as={FiChevronDown}
+              fontSize="24px"
+              as={GiShoppingCart}
               cursor="pointer"
-              color="green"
-              onClick={() => {
-                setUserOptions(!userOptions);
-              }}
+              color="primary.300"
             />
           </Flex>
-        )}
-        {userOptions && (
-          <Box
-            w="200px"
-            position="absolute"
-            rounded="dark-lg"
-            top="60px"
-            boxShadow="xl"
-            p="5"
-          >
-            <Flex align="center" cursor="pointer" onClick={signOut}>
-              <Icon as={FiLogOut} color="red" />
-              <Text ml="2">Sair</Text>
-            </Flex>
-          </Box>
         )}
       </Box>
     </Flex>

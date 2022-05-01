@@ -8,15 +8,17 @@ import { AuthContext } from "../contexts/AuthContext";
 import HeaderMobile from "../components/HeaderMobile";
 
 export default function Dashboard() {
-  const { isAuthorized } = useContext(AuthContext);
+  const { isAuthorized, user, reload } = useContext(AuthContext);
   const isWideVersionLg = useBreakpointValue({
     base: false,
     lg: true,
   });
 
   useEffect(() => {
-    if (!isAuthorized) {
-      Router.push("/");
+    if (isAuthorized !== "true") {
+      if (isAuthorized !== "wait") {
+        Router.push("/");
+      }
     }
   }, []);
   return (

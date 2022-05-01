@@ -7,6 +7,7 @@ import { api } from "../services/api";
 type User = {
   name: string;
   email: string;
+  score: string;
 };
 
 type SignInCredentials = {
@@ -19,8 +20,9 @@ type SignInCredentials = {
 type AuthContextData = {
   signIn: (credentials: SignInCredentials) => Promise<void>;
   signOut: () => void;
+  reload: () => void;
   user: User;
-  isAuthorized: boolean;
+  isAuthorized: string;
 };
 
 type AuthProviderProps = {
@@ -33,7 +35,7 @@ let authChannel: BroadcastChannel;
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User>();
-  const [isAuthorized, setIsAuthorized] = useState(false);
+  const [isAuthorized, setIsAuthorized] = useState("wait");
 
   useEffect(() => {
     authChannel = new BroadcastChannel("auth");
@@ -50,23 +52,29 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }, []);
 
   useEffect(() => {
+    reload();
+  }, []);
+
+  async function reload() {
     const { "eco.token": token } = parseCookies();
 
     if (token) {
-      setIsAuthorized(true);
-      api
-        .get(`auth/me`, { headers: { "auth-token": token } })
+      await api
+        .get("auth/me", { headers: { "auth-token": token } })
         .then((response) => {
-          const { name, email } = response.data;
+          const { name, email, score } = response.data;
 
-          setUser({ name, email });
-          setIsAuthorized(true);
+          setUser({ name, email, score });
+          setIsAuthorized("true");
         })
         .catch(() => {
           signOut();
         });
+    } else {
+      setIsAuthorized("false");
+      Router.push("/");
     }
-  }, []);
+  }
 
   async function signIn({
     email,
@@ -93,35 +101,40 @@ export function AuthProvider({ children }: AuthProviderProps) {
       password,
     });
 
-    const { token, name } = response.data;
+    const { token } = response.data;
+
+    const user = await api.get("auth/me", { headers: { "auth-token": token } });
+    const { name, score } = user.data;
+
+    setUser({
+      name,
+      email,
+      score,
+    });
 
     setCookie(undefined, "eco.token", token, {
       maxAge: 60 * 60 * 24 * 30, // 30 days
       path: "/",
     });
 
-    setUser({
-      name,
-      email,
-    });
-
     api.defaults.headers["Authorization"] = `Bearer ${token}`;
 
-    setIsAuthorized(true);
+    setIsAuthorized("true");
     Router.push("/dashboard");
   }
 
   async function signOut() {
     destroyCookie(undefined, "eco.token");
-    setIsAuthorized(false);
+    setIsAuthorized("false");
+    Router.push("/");
 
     authChannel.postMessage("signOut");
-
-    Router.push("/");
   }
 
   return (
-    <AuthContext.Provider value={{ signIn, signOut, user, isAuthorized }}>
+    <AuthContext.Provider
+      value={{ signIn, signOut, user, isAuthorized, reload }}
+    >
       {children}
     </AuthContext.Provider>
   );

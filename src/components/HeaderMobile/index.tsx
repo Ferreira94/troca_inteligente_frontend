@@ -2,15 +2,12 @@ import {
   Flex,
   Icon,
   Text,
-  Drawer,
-  DrawerBody,
-  DrawerContent,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerOverlay,
-  useDisclosure,
   Image,
   useBreakpointValue,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
 } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
@@ -21,8 +18,6 @@ import Link from "next/link";
 
 export default function HeaderMobile() {
   const { isAuthorized, signOut } = useContext(AuthContext);
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const btnRef = React.useRef();
 
   const isWideVersionMd = useBreakpointValue({
     base: false,
@@ -40,55 +35,34 @@ export default function HeaderMobile() {
       zIndex="5"
     >
       <Link href="/">
-        <Image src="/images/logo.svg" alt="Logo" cursor="pointer" />
+        <Image src="/images/logo.png" alt="Logo" cursor="pointer" />
       </Link>
-      <Icon
-        onClick={onOpen}
-        as={FiMenu}
-        cursor="pointer"
-        fontSize="24px"
-        color="primary.100"
-      />
-      <Drawer
-        isOpen={isOpen}
-        placement="right"
-        onClose={onClose}
-        finalFocusRef={btnRef}
-      >
-        <DrawerOverlay />
-        <DrawerContent bgColor="primary.400" maxW="250">
-          <DrawerHeader bgColor="primary.300" textAlign="right"></DrawerHeader>
-
-          <DrawerBody pt="40">
-            {!isAuthorized && <Login />}
-            <Link href="/recyclables">
-              <Text fontWeight="700" cursor="pointer">
-                Recicláveis
-              </Text>
-            </Link>
-            <Link href="/collection_points">
-              <Text fontWeight="700" cursor="pointer">
-                Pontos de Coleta
-              </Text>
-            </Link>
-            <Link href="/exchange_points">
-              <Text fontWeight="700" cursor="pointer">
-                Troque seus pontos
-              </Text>
-            </Link>
-            {!isAuthorized && <Signup />}
-          </DrawerBody>
-
-          <DrawerFooter bgColor="primary.300" justifyContent="flex-start">
-            {isAuthorized && (
-              <Flex align="center" cursor="pointer" onClick={signOut}>
+      <Menu>
+        <MenuButton as="button">
+          <Icon as={FiMenu} />
+        </MenuButton>
+        <MenuList zIndex="99">
+          {isAuthorized !== "true" && <Login />}
+          <Link href="/recyclables">
+            <MenuItem>Recicláveis</MenuItem>
+          </Link>
+          <Link href="/collection_points">
+            <MenuItem>Pontos de Coleta</MenuItem>
+          </Link>
+          <Link href="/exchange_points">
+            <MenuItem>Troque seus pontos</MenuItem>
+          </Link>
+          {isAuthorized !== "true" && <Signup />}
+          {isAuthorized === "true" && (
+            <MenuItem>
+              <Flex align="center" onClick={signOut}>
                 <Icon as={FiLogOut} color="red" />
                 <Text ml="2">Sair</Text>
               </Flex>
-            )}
-          </DrawerFooter>
-        </DrawerContent>
-      </Drawer>
+            </MenuItem>
+          )}
+        </MenuList>
+      </Menu>
     </Flex>
   );
 }
