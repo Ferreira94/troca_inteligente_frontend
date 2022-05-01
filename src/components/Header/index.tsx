@@ -42,9 +42,11 @@ export default function Header() {
           <Center height="20px" mx="2">
             <Divider orientation="vertical" fontWeight="700" />
           </Center>
-          <Text fontWeight="700" cursor="pointer">
-            Pontos de Coleta
-          </Text>
+          <Link href="/collection_points">
+            <Text fontWeight="700" cursor="pointer">
+              Pontos de Coleta
+            </Text>
+          </Link>
           <Center height="20px" mx="2">
             <Divider orientation="vertical" fontWeight="700" />
           </Center>

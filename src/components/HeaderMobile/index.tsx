@@ -66,9 +66,11 @@ export default function HeaderMobile() {
                 Recicláveis
               </Text>
             </Link>
-            <Text fontWeight="700" cursor="pointer">
-              Pontos de Coleta
-            </Text>
+            <Link href="/collection_points">
+              <Text fontWeight="700" cursor="pointer">
+                Pontos de Coleta
+              </Text>
+            </Link>
 
             <Text fontWeight="700" cursor="pointer">
               Troque seus pontos

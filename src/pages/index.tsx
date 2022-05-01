@@ -39,7 +39,12 @@ export default function Login() {
           w="100vw"
           mt={isWideVersionLg ? "-25.5%" : "-28.5%"}
         />
-        <Box px={isWideVersionMd ? "20" : "7"} bgColor="#00C31F">
+        <Flex
+          flexDirection="column"
+          align={isWideVersionMd ? "flex-start" : "center"}
+          px={isWideVersionMd ? "20" : "7"}
+          bgColor="#00C31F"
+        >
           <Heading
             fontWeight="800"
             fontSize={isWideVersionMd ? "42px" : "30px"}
@@ -48,7 +53,11 @@ export default function Login() {
           >
             Como funciona?
           </Heading>
-          <Flex justify="space-between" w="100%" flexWrap="wrap">
+          <Flex
+            justify={isWideVersionMd ? "space-between" : "center"}
+            w="100%"
+            flexWrap="wrap"
+          >
             <Card
               text="Realize o seu cadastro em nosso site. Só assim será possível recuperar pontos ao realizar o descarte nas lixeiras inteligentes."
               number={1}
@@ -68,7 +77,7 @@ export default function Login() {
               number={4}
             />
           </Flex>
-        </Box>
+        </Flex>
       </Box>
     </>
   );
