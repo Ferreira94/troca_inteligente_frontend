@@ -12,7 +12,7 @@ import {
   Spinner,
   Text,
 } from "@chakra-ui/react";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import ButtonLogin from "./ButtonLogin";
 import ButtonSignup from "./ButtonSignup";
@@ -87,7 +87,7 @@ export default function Header() {
             </Box>
             <Menu>
               <MenuButton as="button">
-                <Icon fontSize="24px" as={FiChevronDown} />
+                <Icon fontSize="24px" color="primary.300" as={FiChevronDown} />
               </MenuButton>
               <MenuList zIndex="99">
                 <Flex align="center" pl="3" cursor="pointer" onClick={signOut}>

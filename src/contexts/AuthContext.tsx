@@ -124,9 +124,9 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }
 
   async function signOut() {
+    Router.push("/");
     destroyCookie(undefined, "eco.token");
     setIsAuthorized("false");
-    Router.push("/");
 
     authChannel.postMessage("signOut");
   }

@@ -8,16 +8,20 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
+  Avatar,
+  Box,
+  Spinner,
 } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { FiLogOut, FiMenu } from "react-icons/fi";
+import { FiLogOut, FiMenu, FiChevronDown } from "react-icons/fi";
+import { GiShoppingCart } from "react-icons/gi";
 import Login from "./Login";
 import Signup from "./Signup";
 import Link from "next/link";
 
 export default function HeaderMobile() {
-  const { isAuthorized, signOut } = useContext(AuthContext);
+  const { isAuthorized, signOut, user } = useContext(AuthContext);
 
   const isWideVersionMd = useBreakpointValue({
     base: false,
@@ -42,6 +46,32 @@ export default function HeaderMobile() {
           <Icon as={FiMenu} />
         </MenuButton>
         <MenuList zIndex="99">
+          {isAuthorized === "true" && (
+            <Box textAlign="center">
+              <Avatar w="35px" h="35px" bgColor="primary.300" mb="1" />
+              <Box mx="2">
+                {user ? (
+                  <Text fontSize="14px" fontWeight="700" lineHeight="1">
+                    {user.name}
+                  </Text>
+                ) : (
+                  <Spinner />
+                )}
+                {user && (
+                  <Text mb="1" fontSize="14px" fontWeight="700" lineHeight="1">
+                    {user.score} pontos
+                  </Text>
+                )}
+              </Box>
+
+              <Icon
+                fontSize="24px"
+                as={GiShoppingCart}
+                cursor="pointer"
+                color="primary.300"
+              />
+            </Box>
+          )}
           {isAuthorized !== "true" && <Login />}
           <Link href="/recyclables">
             <MenuItem>Recicláveis</MenuItem>

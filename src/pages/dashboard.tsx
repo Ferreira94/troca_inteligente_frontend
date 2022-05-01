@@ -1,4 +1,4 @@
-import { Flex, Text, useBreakpointValue } from "@chakra-ui/react";
+import { Flex, Spinner, Text, useBreakpointValue } from "@chakra-ui/react";
 import Router from "next/router";
 import Head from "next/head";
 import { useContext, useEffect } from "react";
@@ -27,18 +27,26 @@ export default function Dashboard() {
         <title>Dashboard</title>
       </Head>
 
-      {isWideVersionLg ? <Header /> : <HeaderMobile />}
+      {isAuthorized !== "wait" ? (
+        <>
+          {isWideVersionLg ? <Header /> : <HeaderMobile />}
 
-      <Flex
-        justifyContent="center"
-        alignItems="center"
-        flexDirection="column"
-        h="100vh"
-      >
-        <Text fontSize="24">Dashboard</Text>
-      </Flex>
+          <Flex
+            justifyContent="center"
+            alignItems="center"
+            flexDirection="column"
+            h="100vh"
+          >
+            <Text fontSize="24">Dashboard</Text>
+          </Flex>
 
-      <Footer />
+          <Footer />
+        </>
+      ) : (
+        <Flex w="100%" h="100vh" align="center" justify="center">
+          <Spinner color="primary.100" />
+        </Flex>
+      )}
     </>
   );
 }

@@ -158,3 +158,31 @@ export const eastPoints = [
     time: "Horário de funcionamento: Segunda a Domingo das 8h às 22h",
   },
 ];
+
+export const questions = [
+  {
+    title: "O que é a Troca inteligente?",
+    text: "A Troca Inteligente, trata-se de uma lixeira  que gerencia os resíduos pós consumo e garante benefícios em pontos para que você descarte os resíduos corretamente.",
+  },
+  {
+    title: "Preciso me cadastrar para descartar resíduos na lixeira?",
+    text: "Não é necessário se cadastrar para utilizar a lixeira. No entanto, sem o cadastro você não adquire pontuações para trocar por descontos.",
+  },
+  {
+    title: "Quem tem direito ao benefício de pontos?",
+    text: "Todo usuário cadastrado em nosso site, ao realizar o descarte com o CPF informado, tem direito aos pontos.",
+  },
+  { title: "Meus pontos expiram?", text: "Não, os pontos não expiram." },
+  {
+    title: "Onde consulto minha pontuação?",
+    text: "Para visualizar sua pontuação, faça o login em nosso site e em seguida clique em extrato.",
+  },
+  {
+    title: "Onde as lixeiras estão localizadas?",
+    text: "As lixeiras por enquanto estão localizadas na Grande SP, em alguns shoppings e mercados. Para conferir o endereço mais próximo, consulte em 'Pontos de coleta'.",
+  },
+  {
+    title: "Posso acumular o reciclável para descartar tudo de 1 vez?",
+    text: "Pode sim! Você pode separar o material adequado e posteriormente levar até uma de nossas lixeiras.",
+  },
+];

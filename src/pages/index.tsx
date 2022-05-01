@@ -1,17 +1,22 @@
 import {
   Box,
+  Button,
   Flex,
   Heading,
+  Icon,
   Image,
   Text,
   useBreakpointValue,
 } from "@chakra-ui/react";
 import Head from "next/head";
+import { MdPlayArrow } from "react-icons/md";
 
 import Header from "../components/Header";
 import HeaderMobile from "../components/HeaderMobile";
 import Card from "../components/Home/Card";
 import Content from "../components/Home/Content";
+
+import { questions } from "../utils";
 
 export default function Login() {
   const isWideVersionLg = useBreakpointValue({
@@ -78,6 +83,49 @@ export default function Login() {
             />
           </Flex>
         </Flex>
+        <Box px={isWideVersionMd ? "20" : "7"} pt="10">
+          <Heading fontWeight="800">
+            Nós somos a{" "}
+            <Heading as="span" color="#00C31F" fontWeight="800">
+              Troca Inteligente
+            </Heading>
+            , uma circulartech que gerencia os resíduos pós consumo e garante
+            benefícios para que você descarte os resíduos corretamente.
+          </Heading>
+          <Text my="5">
+            Atualmente temos 10 pontos de coleta espalhados na Grande São Paulo.
+            <br />
+            Confira os pontos de coleta clicando no botão abaixo.
+          </Text>
+          <Button
+            h="36px"
+            bgGradient="linear(to-t, primary.200, primary.100)"
+            _hover={{
+              bgGradient: "linear(to-r, primary.100, primary.200)",
+            }}
+          >
+            Pontos de coleta
+          </Button>
+        </Box>
+        <Box
+          px={isWideVersionMd ? "20" : "7"}
+          mt="10"
+          py="10"
+          bgColor="#0099C5"
+        >
+          <Heading color="#fff" fontSize="24px" fontWeight="800">
+            Dúvidas frequentes
+          </Heading>
+          {questions.map((item) => (
+            <Box color="#fff" mt="5">
+              <Flex align="center">
+                <Icon as={MdPlayArrow} />
+                <Text>{item.title}</Text>
+              </Flex>
+              <Text>{item.text}</Text>
+            </Box>
+          ))}
+        </Box>
       </Box>
     </>
   );
