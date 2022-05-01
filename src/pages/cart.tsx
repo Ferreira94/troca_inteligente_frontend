@@ -222,7 +222,7 @@ export default function Cart() {
                     </ModalBody>
 
                     <ModalFooter>
-                      <Link href="/dashboard">
+                      <Link href="/extract">
                         <Button onClick={onClose} colorScheme="green">
                           Obrigado!
                         </Button>

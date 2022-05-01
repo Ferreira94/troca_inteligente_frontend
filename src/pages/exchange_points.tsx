@@ -11,10 +11,12 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 import Head from "next/head";
+import { useEffect } from "react";
 import { RiExchangeLine, RiSearchLine } from "react-icons/ri";
 import Card from "../components/ExchangePoints/Card";
 import Header from "../components/Header";
 import HeaderMobile from "../components/HeaderMobile";
+import { api } from "../services/api";
 
 export default function ExchangePoints() {
   const isWideVersionLg = useBreakpointValue({
@@ -26,6 +28,16 @@ export default function ExchangePoints() {
     base: false,
     md: true,
   });
+
+  useEffect(() => {
+    handleCompanies();
+  }, []);
+
+  async function handleCompanies() {
+    const companies = await api.get("coupons");
+
+    console.log(companies);
+  }
 
   return (
     <>

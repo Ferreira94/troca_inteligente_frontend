@@ -186,3 +186,14 @@ export const questions = [
     text: "Pode sim! Você pode separar o material adequado e posteriormente levar até uma de nossas lixeiras.",
   },
 ];
+
+export const selectDate = [
+  { date: "Maio - 2022" },
+  { date: "Junho - 2022" },
+  { date: "Julho - 2022" },
+  { date: "Agosto - 2022" },
+  { date: "Setembro - 2022" },
+  { date: "Outubro - 2022" },
+  { date: "Novembro - 2022" },
+  { date: "Dezembro - 2022" },
+];

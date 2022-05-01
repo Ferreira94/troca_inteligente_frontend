@@ -8,6 +8,7 @@ import {
   Image,
   Menu,
   MenuButton,
+  MenuItem,
   MenuList,
   Spinner,
   Text,
@@ -90,10 +91,22 @@ export default function Header() {
                 <Icon fontSize="24px" color="primary.300" as={FiChevronDown} />
               </MenuButton>
               <MenuList zIndex="99">
-                <Flex align="center" pl="3" cursor="pointer" onClick={signOut}>
-                  <Icon as={FiLogOut} color="red" />
-                  <Text ml="2">Sair</Text>
-                </Flex>
+                <MenuItem>
+                  <Link href="/">
+                    <Text>Home</Text>
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Link href="/extract">
+                    <Text>Extrato</Text>
+                  </Link>
+                </MenuItem>
+                <MenuItem>
+                  <Flex align="center" onClick={signOut}>
+                    <Icon as={FiLogOut} color="red" />
+                    <Text ml="2">Sair</Text>
+                  </Flex>
+                </MenuItem>
               </MenuList>
             </Menu>
             <Link href="/cart">

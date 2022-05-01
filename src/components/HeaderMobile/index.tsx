@@ -75,6 +75,20 @@ export default function HeaderMobile() {
             </Box>
           )}
           {isAuthorized !== "true" && <Login />}
+          {isAuthorized === "true" && (
+            <>
+              <MenuItem>
+                <Link href="/">
+                  <Text>Home</Text>
+                </Link>
+              </MenuItem>
+              <MenuItem>
+                <Link href="/extract">
+                  <Text>Extrato</Text>
+                </Link>
+              </MenuItem>
+            </>
+          )}
           <Link href="/recyclables">
             <MenuItem>Recicláveis</MenuItem>
           </Link>

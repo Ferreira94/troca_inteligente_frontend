@@ -8,6 +8,7 @@ type User = {
   name: string;
   email: string;
   score: string;
+  token: string;
 };
 
 type SignInCredentials = {
@@ -64,7 +65,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         .then((response) => {
           const { name, email, score } = response.data;
 
-          setUser({ name, email, score });
+          setUser({ name, email, score, token });
           setIsAuthorized("true");
         })
         .catch(() => {
@@ -110,6 +111,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       name,
       email,
       score,
+      token,
     });
 
     setCookie(undefined, "eco.token", token, {
@@ -120,7 +122,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
     api.defaults.headers["Authorization"] = `Bearer ${token}`;
 
     setIsAuthorized("true");
-    Router.push("/dashboard");
   }
 
   async function signOut() {
