@@ -12,7 +12,7 @@ export const theme = extendTheme({
       "050": "#F3F2F2",
       "100": "#E7E8FC",
       "200": "#9CA9B6",
-      "300": "#B1AFAA",
+      "300": "#BDBDBD",
       "400": "#9B9892",
       "500": "#85817A",
       "600": "#6A6762",
@@ -23,6 +23,7 @@ export const theme = extendTheme({
     primary: {
       "100": "#77E543",
       "200": "#57EBAD",
+      "300": "#0099C5",
     },
   },
   fonts: {
@@ -45,7 +46,7 @@ export const theme = extendTheme({
   styles: {
     global: {
       body: {
-        bg: "white.200",
+        bg: "rgba(189, 189, 189, 0.1)",
         color: "pGray.800",
       },
     },

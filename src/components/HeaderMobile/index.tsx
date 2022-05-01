@@ -71,10 +71,11 @@ export default function HeaderMobile() {
                 Pontos de Coleta
               </Text>
             </Link>
-
-            <Text fontWeight="700" cursor="pointer">
-              Troque seus pontos
-            </Text>
+            <Link href="/exchange_points">
+              <Text fontWeight="700" cursor="pointer">
+                Troque seus pontos
+              </Text>
+            </Link>
             {!isAuthorized && <Signup />}
           </DrawerBody>
 

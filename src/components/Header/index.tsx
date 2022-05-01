@@ -28,6 +28,7 @@ export default function Header() {
       align="center"
       justify="space-between"
       zIndex="5"
+      bgColor="#fff"
     >
       <Flex align="center">
         <Link href="/">
@@ -50,9 +51,11 @@ export default function Header() {
           <Center height="20px" mx="2">
             <Divider orientation="vertical" fontWeight="700" />
           </Center>
-          <Text fontWeight="700" cursor="pointer">
-            Troque seus pontos
-          </Text>
+          <Link href="/exchange_points">
+            <Text fontWeight="700" cursor="pointer">
+              Troque seus pontos
+            </Text>
+          </Link>
         </Flex>
       </Flex>
       <Box>
