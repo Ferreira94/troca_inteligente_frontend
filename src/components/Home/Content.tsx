@@ -6,6 +6,7 @@ import {
   Text,
   useBreakpointValue,
 } from "@chakra-ui/react";
+import Link from "next/link";
 
 export default function Content() {
   const isWideVersionLg = useBreakpointValue({
@@ -53,16 +54,18 @@ export default function Content() {
           Aqui sua reciclagem, valem pontos! Esses pontos você pode trocar por
           descontos ou produtos de nossas lojas conveniadas...
         </Text>
-        <Button
-          h="36px"
-          mb={isWideVersionLg ? "0" : "5"}
-          bgGradient="linear(to-t, primary.200, primary.100)"
-          _hover={{
-            bgGradient: "linear(to-r, primary.100, primary.200)",
-          }}
-        >
-          Faça seu cadastro
-        </Button>
+        <Link href="#help">
+          <Button
+            h="36px"
+            mb={isWideVersionLg ? "0" : "5"}
+            bgGradient="linear(to-t, primary.200, primary.100)"
+            _hover={{
+              bgGradient: "linear(to-r, primary.100, primary.200)",
+            }}
+          >
+            Confira como funciona
+          </Button>
+        </Link>
       </Box>
       <Box w={isWideVersionLg ? "50%" : "70%"}>
         <Image mt="-8" src="/images/imgHome.svg" alt="Imagem da Home" />

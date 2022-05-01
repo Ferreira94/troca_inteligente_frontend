@@ -96,12 +96,14 @@ export default function Header() {
                 </Flex>
               </MenuList>
             </Menu>
-            <Icon
-              fontSize="24px"
-              as={GiShoppingCart}
-              cursor="pointer"
-              color="primary.300"
-            />
+            <Link href="/cart">
+              <Icon
+                fontSize="24px"
+                as={GiShoppingCart}
+                cursor="pointer"
+                color="primary.300"
+              />
+            </Link>
           </Flex>
         )}
       </Box>

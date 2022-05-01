@@ -14,7 +14,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { FiLogOut, FiMenu, FiChevronDown } from "react-icons/fi";
+import { FiLogOut, FiMenu } from "react-icons/fi";
 import { GiShoppingCart } from "react-icons/gi";
 import Login from "./Login";
 import Signup from "./Signup";
@@ -37,13 +37,14 @@ export default function HeaderMobile() {
       align="center"
       justify="space-between"
       zIndex="5"
+      bgColor="#fff"
     >
       <Link href="/">
         <Image src="/images/logo.png" alt="Logo" cursor="pointer" />
       </Link>
       <Menu>
         <MenuButton as="button">
-          <Icon as={FiMenu} />
+          <Icon as={FiMenu} fontSize="28px" color="primary.100" />
         </MenuButton>
         <MenuList zIndex="99">
           {isAuthorized === "true" && (
@@ -63,13 +64,14 @@ export default function HeaderMobile() {
                   </Text>
                 )}
               </Box>
-
-              <Icon
-                fontSize="24px"
-                as={GiShoppingCart}
-                cursor="pointer"
-                color="primary.300"
-              />
+              <Link href="/cart">
+                <Icon
+                  fontSize="24px"
+                  as={GiShoppingCart}
+                  cursor="pointer"
+                  color="primary.300"
+                />
+              </Link>
             </Box>
           )}
           {isAuthorized !== "true" && <Login />}

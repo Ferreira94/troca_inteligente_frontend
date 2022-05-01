@@ -9,6 +9,7 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 import Head from "next/head";
+import Link from "next/link";
 import { MdPlayArrow } from "react-icons/md";
 
 import Header from "../components/Header";
@@ -49,6 +50,7 @@ export default function Login() {
           align={isWideVersionMd ? "flex-start" : "center"}
           px={isWideVersionMd ? "20" : "7"}
           bgColor="#00C31F"
+          id="help"
         >
           <Heading
             fontWeight="800"
@@ -97,15 +99,17 @@ export default function Login() {
             <br />
             Confira os pontos de coleta clicando no botão abaixo.
           </Text>
-          <Button
-            h="36px"
-            bgGradient="linear(to-t, primary.200, primary.100)"
-            _hover={{
-              bgGradient: "linear(to-r, primary.100, primary.200)",
-            }}
-          >
-            Pontos de coleta
-          </Button>
+          <Link href="/collection_points">
+            <Button
+              h="36px"
+              bgGradient="linear(to-t, primary.200, primary.100)"
+              _hover={{
+                bgGradient: "linear(to-r, primary.100, primary.200)",
+              }}
+            >
+              Pontos de coleta
+            </Button>
+          </Link>
         </Box>
         <Box
           px={isWideVersionMd ? "20" : "7"}
@@ -118,7 +122,7 @@ export default function Login() {
           </Heading>
           {questions.map((item) => (
             <Box color="#fff" mt="5">
-              <Flex align="center">
+              <Flex align={isWideVersionMd ? "center" : "flex-start"}>
                 <Icon as={MdPlayArrow} />
                 <Text>{item.title}</Text>
               </Flex>
