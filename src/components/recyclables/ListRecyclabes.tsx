@@ -54,7 +54,7 @@ export default function ListRecyclabes({
 
       <List mt="2">
         {items.map((item) => (
-          <ListItem>{item.text}</ListItem>
+          <ListItem key={item.text}>{item.text}</ListItem>
         ))}
       </List>
     </Box>

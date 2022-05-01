@@ -39,13 +39,13 @@ export default function Acordion({ title, items }: AcordionProps) {
         </h2>
         <AccordionPanel>
           {items.map((item) => (
-            <>
+            <Box key={item.title}>
               <Text fontWeight="800">{item.title}</Text>
               <Text>{item.address}</Text>
               <Text mb="3" zIndex="50">
                 {item.time}
               </Text>
-            </>
+            </Box>
           ))}
         </AccordionPanel>
       </AccordionItem>

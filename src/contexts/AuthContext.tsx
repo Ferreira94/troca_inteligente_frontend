@@ -55,13 +55,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
     if (token) {
       setIsAuthorized(true);
       api
-        .get(`/me`, { headers: { "auth-token": token } })
+        .get(`auth/me`, { headers: { "auth-token": token } })
         .then((response) => {
           const { name, email } = response.data;
 
           setUser({ name, email });
           setIsAuthorized(true);
-          Router.push("/dashboard");
         })
         .catch(() => {
           signOut();
@@ -89,7 +88,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       credentialLogin = cpf;
     }
 
-    const response = await api.post("login", {
+    const response = await api.post("auth/login", {
       credentialLogin,
       password,
     });

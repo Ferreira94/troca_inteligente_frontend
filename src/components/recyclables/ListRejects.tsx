@@ -37,10 +37,10 @@ export default function ListRejects({
 
       <List mt="2">
         {items.map((item) => (
-          <>
+          <Box key={item.text}>
             {item.title && <ListItem color="red">{item.title}</ListItem>}
             <ListItem>{item.text}</ListItem>
-          </>
+          </Box>
         ))}
       </List>
     </Box>

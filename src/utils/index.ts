@@ -23,7 +23,6 @@ export const recyclableMetals = [
   { text: "Latas de sardinha" },
   { text: "Latas de cerveja" },
   { text: "Tampas de iogurte" },
-  { text: "Folhas de alumínio limpas" },
   { text: "Cápsulas de café" },
   { text: "Folhas de alumínio limpas" },
   { text: "Embalagens de marmitex" },
