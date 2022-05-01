@@ -24,6 +24,8 @@ import Link from "next/link";
 export default function Header() {
   const { isAuthorized, signOut, user } = useContext(AuthContext);
 
+  console.log(user);
+
   return (
     <Flex
       width="100%"

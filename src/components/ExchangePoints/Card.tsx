@@ -5,7 +5,7 @@ interface CardProps {
   image: string;
   name: string;
   discount: string;
-  points: string;
+  points: number;
 }
 
 export default function Card({ image, name, discount, points }: CardProps) {
@@ -14,7 +14,7 @@ export default function Card({ image, name, discount, points }: CardProps) {
       <Image src={image} w="100%" />
       <Box p="3">
         <Text fontWeight="700">{name}</Text>
-        <Text>{discount}</Text>
+        <Text minH="50px">{discount}</Text>
         <Flex align="flex-end" justify="space-between">
           <Text color="primary.300" fontWeight="700">
             {points} pontos

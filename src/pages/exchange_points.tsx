@@ -11,14 +11,22 @@ import {
   useBreakpointValue,
 } from "@chakra-ui/react";
 import Head from "next/head";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { RiExchangeLine, RiSearchLine } from "react-icons/ri";
 import Card from "../components/ExchangePoints/Card";
 import Header from "../components/Header";
 import HeaderMobile from "../components/HeaderMobile";
 import { api } from "../services/api";
 
+interface CompanyProps {
+  name: string;
+  value: number;
+  company: string;
+  image: string;
+}
+
 export default function ExchangePoints() {
+  const [companies, setCompanies] = useState<CompanyProps[]>([]);
   const isWideVersionLg = useBreakpointValue({
     base: false,
     lg: true,
@@ -30,13 +38,13 @@ export default function ExchangePoints() {
   });
 
   useEffect(() => {
-    handleCompanies();
+    loadCompanies();
   }, []);
 
-  async function handleCompanies() {
-    const companies = await api.get("coupons");
+  async function loadCompanies() {
+    const response = await api.get("coupons");
 
-    console.log(companies);
+    setCompanies(response.data);
   }
 
   return (
@@ -80,54 +88,14 @@ export default function ExchangePoints() {
             mt="10"
             gap="5"
           >
-            <Card
-              image="/images/ifood.svg"
-              name="iFood"
-              discount="R$ 10,00 de desconto"
-              points="10"
-            />
-            <Card
-              image="/images/ifood.svg"
-              name="iFood"
-              discount="R$ 10,00 de desconto"
-              points="10"
-            />
-            <Card
-              image="/images/ifood.svg"
-              name="iFood"
-              discount="R$ 10,00 de desconto"
-              points="10"
-            />
-            <Card
-              image="/images/ifood.svg"
-              name="iFood"
-              discount="R$ 10,00 de desconto"
-              points="10"
-            />
-            <Card
-              image="/images/ifood.svg"
-              name="iFood"
-              discount="R$ 10,00 de desconto"
-              points="10"
-            />
-            <Card
-              image="/images/ifood.svg"
-              name="iFood"
-              discount="R$ 10,00 de desconto"
-              points="10"
-            />
-            <Card
-              image="/images/ifood.svg"
-              name="iFood"
-              discount="R$ 10,00 de desconto"
-              points="10"
-            />
-            <Card
-              image="/images/ifood.svg"
-              name="iFood"
-              discount="R$ 10,00 de desconto"
-              points="10"
-            />
+            {companies.map((item) => (
+              <Card
+                image={item.image}
+                name={item.company}
+                discount={item.name}
+                points={item.value}
+              />
+            ))}
           </Flex>
         </Box>
       </Flex>
