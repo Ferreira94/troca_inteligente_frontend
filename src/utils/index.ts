@@ -17,7 +17,7 @@ export const recyclablePlastic = [
   { text: "Parte externa de canetas esferográficas acrílico" },
 ];
 
-export const recyclableMetals = [
+export const recyclableMetal = [
   { text: "Latas de refrigerante" },
   { text: "Latas de óleo" },
   { text: "Latas de sardinha" },
@@ -33,7 +33,41 @@ export const recyclableMetals = [
   { text: "Latas de aerosol" },
 ];
 
-export const rejectsOne = [
+export const recyclablePaper = [
+  { text: "Papéis para escrever" },
+  { text: "Papéis de escritório" },
+  { text: "Cadernos" },
+  { text: "Jornais" },
+  { text: "Revistas" },
+  { text: "Panfletos" },
+  { text: "Papéis de embrulho" },
+  { text: "Papéis de seda" },
+  { text: "Caixas de papelão" },
+  { text: "Cartolinas" },
+  { text: "Papéis Kraft" },
+  { text: "Papéis Heliográficos" },
+  { text: "Papéis filtrantes" },
+  { text: "Papéis de desenho" },
+  { text: "Embalagens longa vida" },
+  { text: "Listas telefônicas" },
+  { text: "Papéis impressos" },
+  { text: "Aparas de papel" },
+];
+
+export const recyclableGlass = [
+  { text: "Garrafas de bebidas alcoólicas" },
+  { text: "Garrafas de bebidas não-alcoólicas" },
+  { text: "Copos de vidro comum" },
+  { text: "Cacos de vidro comum" },
+  { text: "Frascos de molhos e condimentos" },
+  { text: "Potes de produtos alimentícios" },
+  { text: "Frascos de perfumes" },
+  { text: "Frascos de produtos de limpeza" },
+  { text: "Vidros de janelas" },
+  { text: "Vidros de automóveis" },
+];
+
+export const rejectPlastic = [
   { title: "Descarte no lixo comum", text: "Celofane" },
   { text: "Embalagens Plásticas Metalizadas" },
 
@@ -50,11 +84,27 @@ export const rejectsOne = [
   { text: "CPU" },
 ];
 
-export const rejectsTwo = [
+export const rejectMetal = [
   { title: "Descarte em pontos de coletas", text: "Latas de tinta" },
   { text: "Latas de verniz" },
   { text: "Latas de solventes químicos" },
   { text: "Latas de inseticida" },
+];
+
+export const rejectPaper = [
+  {
+    title: "Descarte no lixo comum",
+    text: "Extratos bancários (termo-sensíveis)",
+  },
+  { text: "Papéis carbono" },
+];
+
+export const rejectGlass = [
+  {
+    title: "Descarte em pontos de coletas",
+    text: "Lâmpadas",
+  },
+  { text: "Ampolas de medicamentos" },
 ];
 
 export const centerPoints = [

@@ -34,7 +34,7 @@ export default function ListRecyclabes({
   });
 
   return (
-    <Box mt="10" w={isWideVersionMd ? "550px" : "330px"}>
+    <Box mt="5" w={isWideVersionMd ? "550px" : "330px"}>
       <Flex align="center">
         <Flex
           w="40px"

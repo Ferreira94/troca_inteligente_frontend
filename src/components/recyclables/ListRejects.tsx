@@ -17,7 +17,7 @@ export default function ListRejects({
   items,
 }: ListRecyclabesProps) {
   return (
-    <Box mt="10">
+    <Box mt="5">
       <Flex align="center">
         <Flex
           w="40px"
@@ -38,7 +38,11 @@ export default function ListRejects({
       <List mt="2">
         {items.map((item) => (
           <Box key={item.text}>
-            {item.title && <ListItem color="red">{item.title}</ListItem>}
+            {item.title && (
+              <ListItem color="red" mt="3">
+                {item.title}
+              </ListItem>
+            )}
             <ListItem>{item.text}</ListItem>
           </Box>
         ))}

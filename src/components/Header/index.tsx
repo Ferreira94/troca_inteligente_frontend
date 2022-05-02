@@ -93,16 +93,16 @@ export default function Header() {
                 <Icon fontSize="24px" color="primary.300" as={FiChevronDown} />
               </MenuButton>
               <MenuList zIndex="99">
-                <MenuItem>
-                  <Link href="/">
+                <Link href="/">
+                  <MenuItem>
                     <Text>Home</Text>
-                  </Link>
-                </MenuItem>
-                <MenuItem>
-                  <Link href="/extract">
+                  </MenuItem>
+                </Link>
+                <Link href="/extract">
+                  <MenuItem>
                     <Text>Extrato</Text>
-                  </Link>
-                </MenuItem>
+                  </MenuItem>
+                </Link>
                 <MenuItem>
                   <Flex align="center" onClick={signOut}>
                     <Icon as={FiLogOut} color="red" />
