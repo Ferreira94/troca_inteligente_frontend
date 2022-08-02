@@ -16,6 +16,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { AuthContext } from "../../contexts/AuthContext";
 import { Input } from "../Form/Input";
+import { CaretRight } from "phosphor-react";
 
 type LoginData = {
   credential: string;
@@ -50,23 +51,20 @@ export default function ButtonLogin() {
   return (
     <>
       <Button
-        colorScheme="white"
-        color="pGray.800"
-        border="1px solid green"
-        borderColor="primary.200"
         _hover={{
-          borderColor: "primary.100",
+          bgColor: "green.300",
         }}
         onClick={onOpen}
-        h="36px"
+        h="1.825rem"
+        w="8.125rem"
       >
         Login
       </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent w="300px" p="5">
+        <ModalContent w="18.75rem" p="2">
           <ModalHeader>
-            <Text fontSize="16px" color="pgray.200">
+            <Text fontSize="1rem" color="pgray.200" fontWeight="700">
               Entre com seu login e senha para conferir as ofertas
             </Text>
           </ModalHeader>
@@ -75,47 +73,60 @@ export default function ButtonLogin() {
               as="form"
               width="100%"
               flexDirection="column"
-              align="flex-start"
               onSubmit={handleSubmit(handleLogin)}
             >
               <Input
+                h="1.825rem"
+                fontSize="1rem"
                 name="credential"
                 label="E-mail ou CPF"
                 error={errors.credential}
                 {...register("credential")}
               />
               <Input
+                h="1.825rem"
+                fontSize="1rem"
                 name="password"
                 type="password"
                 label="Senha"
                 error={errors.password}
                 {...register("password")}
               />
-              <Text fontSize="13px" cursor="pointer" textAlign="right" w="100%">
+              <Text
+                fontSize="0.8125rem"
+                cursor="pointer"
+                textAlign="right"
+                w="100%"
+                _hover={{
+                  opacity: 0.7,
+                  textDecoration: "underline",
+                }}
+              >
                 Esqueci minha senha
               </Text>
               <Button
                 type="submit"
                 mt="2"
-                bgGradient="linear(to-t, primary.200, primary.100)"
+                bgColor="green.500"
                 _hover={{
-                  bgGradient: "linear(to-r, primary.100, primary.200)",
+                  bgColor: "green.300",
                 }}
-                h="36px"
-                fontSize="16px"
+                w="100%"
+                h="1.825rem"
+                fontSize="1rem"
                 isLoading={formState.isSubmitting}
+                justifyContent="space-between"
               >
                 Entrar
+                <CaretRight />
               </Button>
             </Flex>
-          </ModalBody>
-          <ModalFooter>
             {messageError && (
               <Text color="red" m="0 auto">
                 {messageError}!
               </Text>
             )}
-          </ModalFooter>
+          </ModalBody>
         </ModalContent>
       </Modal>
     </>

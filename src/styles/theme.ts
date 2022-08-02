@@ -2,7 +2,7 @@ import { extendTheme } from "@chakra-ui/react";
 
 export const theme = extendTheme({
   breakpoints: {
-    lg: "70em",
+    lg: "73em",
     md: "60em",
     ml: "50em",
   },
@@ -20,12 +20,18 @@ export const theme = extendTheme({
       "800": "#353431",
       "900": "#1B1A18",
     },
-    primary: {
-      "100": "#77E543",
-      "200": "#57EBAD",
-      "300": "#0099C5",
+
+    green: {
+      "300": "#77E543",
+      "500": "#00C31F",
+    },
+
+    blue: {
+      "300": "#57EBAD",
+      "500": "#0099C5",
     },
   },
+
   fonts: {
     heading: "Raleway",
     body: "Raleway",

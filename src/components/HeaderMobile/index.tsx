@@ -44,12 +44,12 @@ export default function HeaderMobile() {
       </Link>
       <Menu>
         <MenuButton as="button">
-          <Icon as={FiMenu} fontSize="28px" color="primary.100" />
+          <Icon as={FiMenu} fontSize="28px" color="green.300" />
         </MenuButton>
         <MenuList zIndex="99">
           {isAuthorized === "true" && (
             <Box textAlign="center">
-              <Avatar w="35px" h="35px" bgColor="primary.300" mb="1" />
+              <Avatar w="35px" h="35px" bgColor="blue.500" mb="1" />
               <Box mx="2">
                 {user ? (
                   <Text fontSize="14px" fontWeight="700" lineHeight="1">
@@ -69,7 +69,7 @@ export default function HeaderMobile() {
                   fontSize="24px"
                   as={GiShoppingCart}
                   cursor="pointer"
-                  color="primary.300"
+                  color="blue.500"
                 />
               </Link>
             </Box>

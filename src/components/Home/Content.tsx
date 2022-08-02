@@ -39,7 +39,7 @@ export default function Content() {
           <Text
             fontWeight="800"
             fontSize={isWideVersionMd ? "42px" : "30px"}
-            color="primary.100"
+            color="green.300"
             as="span"
           >
             recompensa{" "}
@@ -58,9 +58,9 @@ export default function Content() {
           <Button
             h="36px"
             mb={isWideVersionLg ? "0" : "5"}
-            bgGradient="linear(to-t, primary.200, primary.100)"
+            bgGradient="linear(to-t, blue.300, green.300)"
             _hover={{
-              bgGradient: "linear(to-r, primary.100, primary.200)",
+              bgGradient: "linear(to-r, green.300, blue.300)",
             }}
           >
             Confira como funciona

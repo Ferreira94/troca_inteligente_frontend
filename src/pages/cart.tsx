@@ -61,7 +61,7 @@ export default function Cart() {
             <Icon
               as={GiShoppingCart}
               fontSize="30px"
-              color="primary.100"
+              color="green.300"
               ml="3"
             />
           </Flex>
@@ -92,7 +92,7 @@ export default function Cart() {
                     <Box ml={isWideVersionMd ? "10" : "3"}>
                       <Text fontWeight="700">iFood</Text>
                       <Text>R$ 10,00 de desconto</Text>
-                      <Text color="primary.300" fontWeight="700">
+                      <Text color="blue.500" fontWeight="700">
                         10 pontos
                       </Text>
                     </Box>
@@ -171,7 +171,7 @@ export default function Cart() {
                   <Box ml={isWideVersionMd ? "10" : "3"}>
                     <Text fontWeight="700">iFood</Text>
                     <Text>R$ 10,00 de desconto</Text>
-                    <Text color="primary.300" fontWeight="700">
+                    <Text color="blue.500" fontWeight="700">
                       10 pontos
                     </Text>
                   </Box>

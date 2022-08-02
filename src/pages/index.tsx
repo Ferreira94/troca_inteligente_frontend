@@ -33,7 +33,7 @@ export default function Login() {
   return (
     <>
       <Head>
-        <title>Home</title>
+        <title>Home | Troca Inteligente</title>
       </Head>
 
       <Box w="100%" h="100%">
@@ -102,9 +102,9 @@ export default function Login() {
           <Link href="/collection_points">
             <Button
               h="36px"
-              bgGradient="linear(to-t, primary.200, primary.100)"
+              bgGradient="linear(to-t, blue.300, green.300)"
               _hover={{
-                bgGradient: "linear(to-r, primary.100, primary.200)",
+                bgGradient: "linear(to-r, green.300, blue.300)",
               }}
             >
               Pontos de coleta

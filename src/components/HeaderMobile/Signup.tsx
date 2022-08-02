@@ -127,9 +127,9 @@ export default function ButtonSignup() {
               <Button
                 type="submit"
                 mt="2"
-                bgGradient="linear(to-t, primary.200, primary.100)"
+                bgGradient="linear(to-t, blue.300, green.300)"
                 _hover={{
-                  bgGradient: "linear(to-r, primary.100, primary.200)",
+                  bgGradient: "linear(to-r, green.300, blue.300)",
                 }}
                 h="36px"
                 fontSize="16px"

@@ -56,7 +56,7 @@ export default function Recyclables() {
           <Heading fontSize={isWideVersionMd ? "34px" : "24px"}>
             Resíduo Reciclável
           </Heading>
-          <Icon as={MdRecycling} fontSize="30px" color="primary.100" ml="3" />
+          <Icon as={MdRecycling} fontSize="30px" color="green.300" ml="3" />
         </Flex>
         <Text mt="5">
           Você tem dúvida do que é reciclável e o que é rejeito? Confira abaixo

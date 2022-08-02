@@ -39,7 +39,7 @@ export default function ListRecyclabes({
         <Flex
           w="40px"
           h="40px"
-          bgColor="primary.100"
+          bgColor="green.300"
           borderRadius="3"
           justify="center"
           align="center"

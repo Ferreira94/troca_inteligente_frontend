@@ -17,6 +17,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { AuthContext } from "../../contexts/AuthContext";
 import { Input } from "../Form/Input";
 import { api } from "../../services/api";
+import { CaretRight } from "phosphor-react";
 
 type CreateUserFormData = {
   name: string;
@@ -73,21 +74,22 @@ export default function ButtonSignup() {
   return (
     <>
       <Button
-        bgGradient="linear(to-t, primary.200, primary.100)"
+        bgColor="blue.500"
         _hover={{
-          bgGradient: "linear(to-r, primary.100, primary.200)",
+          opacity: 0.7,
         }}
         onClick={onOpen}
-        h="36px"
+        h="1.825rem"
+        w="11.825"
         ml="5"
       >
         Quero me cadastrar
       </Button>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent w="300px" p="5">
+        <ModalContent w="18.75rem" p="2">
           <ModalHeader>
-            <Text fontSize="16px" color="pgray.200">
+            <Text color="pgray.200" fontWeight="700">
               Preencha os dados abaixo para realizar seu cadastro
             </Text>
           </ModalHeader>
@@ -96,22 +98,24 @@ export default function ButtonSignup() {
               as="form"
               width="100%"
               flexDirection="column"
-              align="flex-start"
               onSubmit={handleSubmit(handleCreateUser)}
             >
               <Input
+                h="1.825rem"
                 name="name"
                 label="Nome Completo"
                 error={errors.name}
                 {...register("name")}
               />
               <Input
+                h="1.825rem"
                 name="cpf"
                 label="CPF"
                 error={errors.cpf}
                 {...register("cpf")}
               />
               <Input
+                h="1.825rem"
                 name="email"
                 type="email"
                 label="E-mail"
@@ -119,6 +123,7 @@ export default function ButtonSignup() {
                 {...register("email")}
               />
               <Input
+                h="1.825rem"
                 name="password"
                 type="password"
                 label="Senha"
@@ -126,6 +131,7 @@ export default function ButtonSignup() {
                 {...register("password")}
               />
               <Input
+                h="1.825rem"
                 name="passwordConfirmation"
                 type="password"
                 label="Confirmar Senha"
@@ -135,25 +141,25 @@ export default function ButtonSignup() {
               <Button
                 type="submit"
                 mt="2"
-                bgGradient="linear(to-t, primary.200, primary.100)"
+                bgColor="green.500"
                 _hover={{
-                  bgGradient: "linear(to-r, primary.100, primary.200)",
+                  bgColor: "green.300",
                 }}
-                h="36px"
-                fontSize="16px"
+                w="100%"
+                h="1.825rem"
                 isLoading={formState.isSubmitting}
+                justifyContent="space-between"
               >
                 Cadastrar
+                <CaretRight />
               </Button>
             </Flex>
-          </ModalBody>
-          <ModalFooter>
             {messageError && (
               <Text color="red" m="0 auto">
                 {messageError}!
               </Text>
             )}
-          </ModalFooter>
+          </ModalBody>
         </ModalContent>
       </Modal>
     </>

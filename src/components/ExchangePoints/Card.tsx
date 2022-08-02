@@ -16,7 +16,7 @@ export default function Card({ image, name, discount, points }: CardProps) {
         <Text fontWeight="700">{name}</Text>
         <Text minH="50px">{discount}</Text>
         <Flex align="flex-end" justify="space-between">
-          <Text color="primary.300" fontWeight="700">
+          <Text color="blue.500" fontWeight="700">
             {points} pontos
           </Text>
           <Flex
@@ -24,7 +24,7 @@ export default function Card({ image, name, discount, points }: CardProps) {
             justify="center"
             w="32px"
             h="32px"
-            bgColor="primary.100"
+            bgColor="green.100"
             borderRadius="2"
           >
             <Icon fontSize="28px" as={GiShoppingCart} cursor="pointer" />

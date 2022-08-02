@@ -70,7 +70,7 @@ export default function ExchangePoints() {
             <Icon
               as={RiExchangeLine}
               fontSize="30px"
-              color="primary.100"
+              color="green.300"
               ml="3"
             />
           </Flex>

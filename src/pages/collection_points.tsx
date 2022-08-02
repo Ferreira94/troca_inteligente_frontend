@@ -52,12 +52,7 @@ export default function CollectionPoints() {
             <Heading fontSize={isWideVersionMd ? "34px" : "24px"}>
               Pontos de Coleta
             </Heading>
-            <Icon
-              as={MdLocationPin}
-              fontSize="30px"
-              color="primary.100"
-              ml="3"
-            />
+            <Icon as={MdLocationPin} fontSize="30px" color="green.300" ml="3" />
           </Flex>
           <Text my="5">
             Atualmente, temos pontos de coleta instalados apenas na

@@ -104,7 +104,7 @@ export default function Extract() {
               <Icon
                 as={AiFillFileText}
                 fontSize="30px"
-                color="primary.100"
+                color="green.300"
                 ml="3"
               />
             </Flex>
@@ -112,7 +112,7 @@ export default function Extract() {
               Confira seu extrato atualizado e pontuações. Selecione abaixo o
               período que deseja consultar.
             </Text>
-            <Select w="180px" my="5" borderColor="primary.100">
+            <Select w="180px" my="5" borderColor="green.300">
               {selectDate.map((item) => (
                 <option value={item.date}>{item.date}</option>
               ))}
@@ -138,7 +138,7 @@ export default function Extract() {
                               year: "numeric",
                             })}
                           </Text>
-                          <Text color="primary.100" fontWeight="700">
+                          <Text color="green.300" fontWeight="700">
                             {item.dump.name}
                           </Text>
                         </Td>
@@ -154,7 +154,7 @@ export default function Extract() {
           </Box>
         ) : (
           <Flex justify="center" align="center" w="100%" h="80vh">
-            <Spinner color="primary.100" />
+            <Spinner color="green.300" />
           </Flex>
         )}
       </Flex>

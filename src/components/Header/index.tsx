@@ -2,7 +2,6 @@ import {
   Avatar,
   Box,
   Center,
-  Divider,
   Flex,
   Icon,
   Image,
@@ -24,8 +23,6 @@ import Link from "next/link";
 export default function Header() {
   const { isAuthorized, signOut, user } = useContext(AuthContext);
 
-  console.log(user);
-
   return (
     <Flex
       width="100%"
@@ -43,23 +40,19 @@ export default function Header() {
         </Link>
         <Flex ml="20">
           <Link href="/recyclables">
-            <Text fontWeight="700" cursor="pointer">
+            <Text fontWeight="700" cursor="pointer" _hover={{ opacity: 0.7 }}>
               Recicláveis
             </Text>
           </Link>
-          <Center height="20px" mx="2">
-            <Divider orientation="vertical" fontWeight="700" />
-          </Center>
+          <Center height="1.25rem" bgColor="pGray.900" width="1px" mx="3" />
           <Link href="/collection_points">
-            <Text fontWeight="700" cursor="pointer">
+            <Text fontWeight="700" cursor="pointer" _hover={{ opacity: 0.7 }}>
               Pontos de Coleta
             </Text>
           </Link>
-          <Center height="20px" mx="2">
-            <Divider orientation="vertical" fontWeight="700" />
-          </Center>
+          <Center height="1.25rem" bgColor="pGray.900" width="1px" mx="3" />
           <Link href="/exchange_points">
-            <Text fontWeight="700" cursor="pointer">
+            <Text fontWeight="700" cursor="pointer" _hover={{ opacity: 0.7 }}>
               Troque seus pontos
             </Text>
           </Link>
@@ -73,7 +66,7 @@ export default function Header() {
           </>
         ) : (
           <Flex align="center">
-            <Avatar w="35px" h="35px" bgColor="primary.300" />
+            <Avatar w="35px" h="35px" bgColor="blue.500" />
             <Box mx="2">
               {user ? (
                 <Text fontSize="14px" fontWeight="700" lineHeight="1">
@@ -90,7 +83,7 @@ export default function Header() {
             </Box>
             <Menu>
               <MenuButton as="button">
-                <Icon fontSize="24px" color="primary.300" as={FiChevronDown} />
+                <Icon fontSize="24px" color="blue.500" as={FiChevronDown} />
               </MenuButton>
               <MenuList zIndex="99">
                 <Link href="/">
@@ -116,7 +109,7 @@ export default function Header() {
                 fontSize="24px"
                 as={GiShoppingCart}
                 cursor="pointer"
-                color="primary.300"
+                color="blue.500"
               />
             </Link>
           </Flex>
